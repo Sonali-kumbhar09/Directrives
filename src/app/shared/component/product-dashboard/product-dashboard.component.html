@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2>Product Dashboard</h2>
+ 
+         <form #prodForm="ngForm" (ngSubmit)="onProductAdd()">
+           <div class="form-group">
+            <label for="pName">Product Name</label>
+            <textarea required ngModel name="pName" type="text" id="pName" class="form-control"></textarea>
+           </div>
+           <div class="form-group">
+            <label for="pDescription">Product Description</label>
+            <textarea required ngModel name="pDescription" type="text" id="pDescription" class="form-control"></textarea>
+           </div>
+
+           <div class="form-group">
+            <label for="pCatg">Product Category</label>
+            <select required ngModel name="pCatg" type="text" id="pCatg" class="form-control">
+                <option value="product">Product</option>
+                <option value="catlog">Catlog</option>
+            </select>
+           </div>
+
+
+           <button [disabled]="prodForm.invalid" type="submit" class="btn btn-sm btn-block btn-primary">Add Product</button>
+        </form>
+
+        <hr>
+
+        <div class="card mb-3" *ngFor="let prod of productsArr">
+            <div class="card-header text-white"
+                [ngClass]="{
+                    'bg-success' : prod.pCatg === 'product',
+                    'bg-primary' : prod.pCatg === 'catlog'
+
+                }"
+                >
+                <h4>
+                    {{prod.pName}} <small>{{prod.pCatg}}</small>
+                </h4>
+             </div>
+            
+            
+          <div class="card-body">
+            <p>{{prod.pDescription}}</p>
+         </div>
+        
+        <div class="card-footer d-flex justify-content-between">
+                <button class="btn btn-sm btn-outline-primary">Edit</button>
+                <button class="btn btn-sm btn-outline-danger">Remove</button>
+            </div>
+                
+             </div>
+        </div>
+
+    </div>
+   
